@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dy8xfkh831vl4"]
+
+[ext_resource type="Texture2D" uid="uid://bd8lcbc2706xr" path="res://assets/flowe.png" id="1_3tuv5"]
+[ext_resource type="Script" path="res://scripts/flowe.gd" id="1_cgqld"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p5xv6"]
+size = Vector2(26, 28)
+
+[node name="Flowe" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_cgqld")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_3tuv5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_p5xv6")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

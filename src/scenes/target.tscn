@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bv4qbdcb2xhdl"]
+
+[ext_resource type="Script" path="res://scripts/target.gd" id="1_vuklf"]
+[ext_resource type="Texture2D" uid="uid://bbfmkmvseb302" path="res://assets/target.png" id="2_3axav"]
+
+[node name="Target" type="Node2D"]
+script = ExtResource("1_vuklf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_3axav")

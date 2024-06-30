@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://djkubhwswoq7h"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_d7mql"]
+[ext_resource type="PackedScene" uid="uid://jvgjf5o57pq6" path="res://scenes/bumble.tscn" id="1_rfp34"]
+[ext_resource type="PackedScene" uid="uid://dy8xfkh831vl4" path="res://scenes/flowe.tscn" id="3_37oou"]
+[ext_resource type="PackedScene" uid="uid://cf4etxfct0tem" path="res://scenes/HUD.tscn" id="4_j3jx6"]
+[ext_resource type="AudioStream" uid="uid://dlkaflummvp15" path="res://assets/bee.wav" id="5_1uhxf"]
+[ext_resource type="PackedScene" uid="uid://bv4qbdcb2xhdl" path="res://scenes/target.tscn" id="6_l6vju"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_d7mql")
+
+[node name="Target" parent="." instance=ExtResource("6_l6vju")]
+
+[node name="Bumble" parent="." instance=ExtResource("1_rfp34")]
+position = Vector2(50, 50)
+
+[node name="Flowe" parent="." instance=ExtResource("3_37oou")]
+
+[node name="Hud" parent="." instance=ExtResource("4_j3jx6")]
+
+[node name="Ui" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="Ui"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 25
+text = "0
+"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 60.0
+one_shot = true
+autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_1uhxf")
+volume_db = -20.0
+autoplay = true
+
+[connection signal="move" from="Bumble" to="Target" method="_on_bumble_move"]
+[connection signal="new_game" from="Hud" to="." method="_on_hud_new_game"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
